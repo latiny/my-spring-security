@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/security")
 public class DemoController {
 
+    @RequestMapping("/userLogin")
+    public String login() {
+        return "login";
+    }
+
     @RequestMapping("/index")
     public String index() {
         return "index";
@@ -26,11 +31,6 @@ public class DemoController {
     @RequestMapping("/remove")
     public String remove() {
         return "demo/remove";
-    }
-
-    @RequestMapping("/nimei")
-    public String nimei() {
-        return "demo/nimei";
     }
 
 

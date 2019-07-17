@@ -19,7 +19,7 @@ public class MyUserDetailService implements UserDetailsService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         String userName = "latiny";
         String password = "abc123";
-        User user = new User(userName, password, AuthorityUtils
+        User user = new User(userName, password, true, true, true, true, AuthorityUtils
                 .commaSeparatedStringToAuthorityList("ROLE_USER, ROLE_ADMIN"));
 
         return user;

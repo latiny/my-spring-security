@@ -13,16 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/security")
 public class DemoController {
 
-    @RequestMapping("/userLogin")
-    public String login() {
-        return "login";
-    }
-
-    @RequestMapping("/index")
-    public String index() {
-        return "index";
-    }
-
     @RequestMapping("/add")
     public String add() {
         return "demo/add";

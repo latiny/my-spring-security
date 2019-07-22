@@ -3,11 +3,14 @@ package com.latiny.domain;
 import java.util.Date;
 
 public class SysPermissionDomain {
+
     private Long id;
 
     private String permissionName;
 
     private String permissionDesc;
+
+    private String permissionCode;
 
     private Date createTime;
 
@@ -37,6 +40,14 @@ public class SysPermissionDomain {
 
     public void setPermissionDesc(String permissionDesc) {
         this.permissionDesc = permissionDesc;
+    }
+
+    public String getPermissionCode() {
+        return permissionCode;
+    }
+
+    public void setPermissionCode(String permissionCode) {
+        this.permissionCode = permissionCode;
     }
 
     public Date getCreateTime() {

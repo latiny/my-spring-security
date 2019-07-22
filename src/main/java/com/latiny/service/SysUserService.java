@@ -2,6 +2,8 @@ package com.latiny.service;
 
 import com.latiny.domain.SysPermissionDomain;
 import com.latiny.domain.SysUserDomain;
+import com.latiny.model.SysPermission;
+import com.latiny.model.SysUser;
 
 import java.util.List;
 
@@ -18,12 +20,12 @@ public interface SysUserService {
      * @param userName
      * @return
      */
-    SysUserDomain findUserByName(String userName);
+    SysUser findUserByName(String userName);
 
     /**
      * 查询用户权限
      * @param userName
      * @return
      */
-    List<SysPermissionDomain> findPermisionByUserName(String userName);
+    List<SysPermission> findPermisionByUserName(String userName);
 }

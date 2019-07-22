@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class LoginController {
 
-    @RequestMapping("/login")
+    @RequestMapping("/userLogin")
     public String login() {
         return "login";
     }
@@ -21,5 +21,10 @@ public class LoginController {
     @RequestMapping("/index")
     public String index() {
         return "index";
+    }
+
+    @RequestMapping("/error")
+    public String error() {
+        return "error";
     }
 }

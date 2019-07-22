@@ -4,6 +4,7 @@ import com.latiny.domain.SysPermissionDomain;
 import com.latiny.domain.SysUserDomain;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

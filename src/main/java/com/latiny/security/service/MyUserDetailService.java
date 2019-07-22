@@ -1,11 +1,18 @@
 package com.latiny.security.service;
 
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.User;
+import com.latiny.model.SysPermission;
+import com.latiny.model.SysUser;
+import com.latiny.service.SysUserService;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Latiny
@@ -15,13 +22,22 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
  */
 public class MyUserDetailService implements UserDetailsService {
 
-    @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        String userName = "latiny";
-        String password = "abc123";
-        User user = new User(userName, password, true, true, true, true, AuthorityUtils
-                .commaSeparatedStringToAuthorityList("ROLE_USER, ROLE_ADMIN"));
+    private Logger logger = Logger.getLogger(MyUserDetailService.class);
 
-        return user;
+    @Autowired
+    private SysUserService sysUserService;
+
+    @Override
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        SysUser sysUser = sysUserService.findUserByName(userName);
+        List<SysPermission> sysPermissionList = sysUserService.findPermisionByUserName(userName);
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        for (SysPermission sysPermission : sysPermissionList) {
+            GrantedAuthority authority = new SimpleGrantedAuthority(sysPermission.getPermissionCode());
+            authorities.add(authority);
+        }
+        sysUser.setAuthorities(authorities);
+        logger.info(sysUser);
+        return sysUser;
     }
 }

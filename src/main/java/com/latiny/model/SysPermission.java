@@ -2,12 +2,6 @@ package com.latiny.model;
 
 import java.util.Date;
 
-/**
- * @author Latiny
- * @version 1.0
- * @description: Permission
- * @date 2019/7/17 18:38
- */
 public class SysPermission {
 
     private Long id;
@@ -15,6 +9,8 @@ public class SysPermission {
     private String permissionName;
 
     private String permissionDesc;
+
+    private String permissionCode;
 
     private Date createTime;
 
@@ -44,6 +40,14 @@ public class SysPermission {
 
     public void setPermissionDesc(String permissionDesc) {
         this.permissionDesc = permissionDesc;
+    }
+
+    public String getPermissionCode() {
+        return permissionCode;
+    }
+
+    public void setPermissionCode(String permissionCode) {
+        this.permissionCode = permissionCode;
     }
 
     public Date getCreateTime() {

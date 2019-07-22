@@ -9,8 +9,13 @@
     <security:http>
         <!--pattern: 需要拦截的资源
         permitAll()：允许所有人访问-->
+        <security:intercept-url pattern="/security/add" access="hasAnyAuthority('PRODUCT_ADD')"/>
+        <security:intercept-url pattern="/security/remove" access="hasAnyAuthority('PRODUCT_REMOVE')"/>
+        <security:intercept-url pattern="/security/query" access="hasAnyAuthority('PRODUCT_LIST')"/>
+
         <security:intercept-url pattern="/index" access="permitAll()"/>
-        <security:intercept-url pattern="/login" access="permitAll()"/>
+        <security:intercept-url pattern="/userLogin" access="permitAll()"/>
+        <security:intercept-url pattern="/resources/**" access="permitAll()"/>
         <security:intercept-url pattern="/**" access="isFullyAuthenticated()"/>
 
         <!--<security:http-basic/>-->
@@ -18,16 +23,15 @@
                              <!--authentication-success-handler-ref="myAuthenticationSuccessHandler"-->
                              <!--authentication-failure-handler-ref="myAuthenticationFailureHandler"/>-->
         <!--<security:csrf disabled="true"/>-->
-        <security:form-login default-target-url="/index"/>
+        <security:form-login login-page="/userLogin" default-target-url="/index"/>
         <security:csrf disabled="true"/>
+        <!--访问拒绝页面-->
+        <security:access-denied-handler error-page="/error"/>
     </security:http>
 
     <!--认证信息提供方式-->
     <security:authentication-manager>
         <security:authentication-provider user-service-ref="myUserDetailService">
-            <!--<security:user-service>-->
-                <!--<security:user name="latiny" password="123456" authorities="ROLE_USER"/>-->
-            <!--</security:user-service>-->
         </security:authentication-provider>
     </security:authentication-manager>
 
